@@ -8,6 +8,10 @@ import { MapPinIcon } from 'react-native-heroicons/solid'
 export default function HomeScreen() {
     const [showSeacrh, setShowSearch] = react.useState(false)
     const [locations, setLocations] = useState([1, 2, 3])
+
+    const handleLocation = (location) => {
+        console.log(location)
+    }
     return (
         <View style={tw`flex-1 relative`}>
             <StatusBar style={tw`light`} />
@@ -42,6 +46,7 @@ export default function HomeScreen() {
                                         let borderClass = showBorder ? 'border-b-2 border-gray-400' : '';
                                         return (
                                             <TouchableOpacity key={index}
+                                                onPress={() => handleLocation(location)}
                                                 style={tw`flex-row items-center border-0 p-3 px-4 mb-1 ${borderClass}`}>
                                                 <MapPinIcon size={20} color='black' />
                                                 <Text style={tw`ml-2 text-lg text-black`}>
@@ -54,6 +59,23 @@ export default function HomeScreen() {
                             </View>
                         ) : null
                     }
+                </View>
+                {/* forecast section */}
+                <View style={tw`flex-1 mx-4 justify-around mb-2 flex`} >
+                    {/* location */}
+                    <Text style={tw`text-2xl text-white font-bold text-center`} >
+                        London,
+                        <Text style={tw`text-lg text-gray-300 font-semibold`}>
+                            United Kingdom
+                        </Text>
+                    </Text>
+                    {/* weather image */}
+                    <View style={tw`flex-row justify-center`}>
+                        <Image 
+                            source={require('../assets/images/sunny2.jpg')}
+                            style={tw`w-52 h-52`}
+                        />
+                    </View>
                 </View>
             </SafeAreaView>
         </View>
